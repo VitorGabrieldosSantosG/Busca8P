@@ -7,7 +7,6 @@ from puzzle.result import SearchResult
 class AStar(BaseSearch):
 
     def heuristic(self, state: State) -> int:
-        """Distância de Manhattan (admissível e consistente)."""
         total = 0
         for index, tile in enumerate(state.tiles):
             if tile == 0:
@@ -19,7 +18,7 @@ class AStar(BaseSearch):
     def search(self, initial: State) -> SearchResult:
         generated = 1
         expanded = 0
-        counter = 0  # desempate estável no heap
+        counter = 0
         frontier = [(self.heuristic(initial), counter, initial)]
         best_cost = {initial.tiles: initial.cost}
         closed = set()
